@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 
+`ifndef VERILATOR
 `include "prim_assert.sv"
 `include "core_ibex_csr_categories.svh"
 
@@ -852,3 +853,4 @@ interface mem_monitor_if (
   assign outstanding_requests_o = outstanding_requests;
   assign single_cycle_response_o = no_outstanding_requests_last_cycle & rvalid_i;
 endinterface
+`endif

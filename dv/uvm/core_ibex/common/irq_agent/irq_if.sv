@@ -11,7 +11,9 @@ interface irq_if(input clk);
   logic        irq_nm;       // non-maskable interrupt
 
   clocking driver_cb @(posedge clk);
+`ifndef VERILATOR
     default output negedge;
+`endif
     input   reset;
     output  irq_software;
     output  irq_timer;

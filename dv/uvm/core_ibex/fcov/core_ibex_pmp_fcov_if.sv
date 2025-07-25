@@ -4,6 +4,7 @@
 
 `include "prim_assert.sv"
 
+`ifndef VERILATOR
 interface core_ibex_pmp_fcov_if import ibex_pkg::*; #(
     parameter bit          PMPEnable      = 1'b0,
     // Granularity of NAPOT access,
@@ -852,3 +853,4 @@ interface core_ibex_pmp_fcov_if import ibex_pkg::*; #(
   end
 
 endinterface
+`endif

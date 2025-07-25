@@ -7,6 +7,7 @@
 class dv_base_shadowed_field_cov extends uvm_object;
   `uvm_object_utils(dv_base_shadowed_field_cov)
 
+`ifndef VERILATOR
   covergroup shadow_field_errs_cg(string name) with function sample(bit update_err = 0,
                                                                     bit storage_err = 0);
     option.per_instance = 1;
@@ -25,5 +26,6 @@ class dv_base_shadowed_field_cov extends uvm_object;
   function new(string name = "");
     shadow_field_errs_cg = new($sformatf("%0s_shadowed_errs_cov", name));
   endfunction : new
+`endif
 
 endclass

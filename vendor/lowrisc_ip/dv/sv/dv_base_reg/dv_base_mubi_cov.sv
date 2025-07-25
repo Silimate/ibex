@@ -9,6 +9,7 @@ class mubi_cov #(parameter int Width = 4,
   `uvm_object_param_utils(mubi_cov #(Width, ValueTrue, ValueFalse))
 
   // Collect true, false and at least N other values (N = Width)
+`ifndef VERILATOR
   covergroup mubi_cg(string name) with function sample(bit [Width-1:0] value);
     option.per_instance = 1;
     option.name         = name;
@@ -28,6 +29,7 @@ class mubi_cov #(parameter int Width = 4,
   virtual function void sample(bit [Width-1:0] value);
     mubi_cg.sample(value);
   endfunction : sample
+`endif
 endclass : mubi_cov
 
 typedef mubi_cov #(.Width(4),

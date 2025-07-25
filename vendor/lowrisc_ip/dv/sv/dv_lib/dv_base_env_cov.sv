@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0, see LICENSE for details.
 // SPDX-License-Identifier: Apache-2.0
 
+`ifndef VERILATOR
 class bit_toggle_cg_wrap;
 
   // Covergroup: bit_toggle_cg
@@ -30,6 +31,7 @@ class bit_toggle_cg_wrap;
   endfunction : sample
 
 endclass : bit_toggle_cg_wrap
+`endif
 
 class dv_base_env_cov #(type CFG_T = dv_base_env_cfg) extends uvm_component;
   `uvm_component_param_utils(dv_base_env_cov #(CFG_T))

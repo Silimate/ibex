@@ -13,6 +13,7 @@ class dv_base_lockable_field_cov extends uvm_object;
 
   `uvm_object_utils(dv_base_lockable_field_cov)
 
+`ifndef VERILATOR
   // Cover these 2 cases
   // 1. When regwen = 1, write a non-mirrored value to lockable CSR and read it back
   // 2. When regwen = 0, write a non-mirrored value to lockable CSR and read it back
@@ -46,5 +47,6 @@ class dv_base_lockable_field_cov extends uvm_object;
   virtual function void post_read();
     if (is_new_val_written) regwen_val_when_new_value_written_cg.sample();
   endfunction
+`endif
 
 endclass : dv_base_lockable_field_cov

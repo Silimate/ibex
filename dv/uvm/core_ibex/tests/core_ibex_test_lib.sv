@@ -183,7 +183,9 @@ class core_ibex_rf_intg_test extends core_ibex_base_test;
       exp_alert = read_data("u_ibex_core.instr_valid_id");
 
       // Schedule a simulation step so the DUT can react.
+`ifndef VERILATOR
       #1step;
+`endif
 
       // Check if the major alert matches our expectation.
       alert_major_internal = read_data("alert_major_internal_o");
@@ -1460,7 +1462,9 @@ class core_ibex_irq_in_debug_test extends core_ibex_directed_test;
           // If execution reaches this point the DRET has been seen whilst an IRQ id raised.
           // Disable `wait_irq` at this point as it's no longer an error for the interrupt handler
           // to execute
+`ifndef VERILATOR
           disable wait_irq;
+`endif
 
           `uvm_info(`gfn, "dret seen before IRQ dropped", UVM_LOW)
 
@@ -1483,8 +1487,10 @@ class core_ibex_irq_in_debug_test extends core_ibex_directed_test;
           if (!seen_dret) begin
             // Reached end of wait and DRET not seen, so core remains in debug mode. Disable
             // `wait_dret` and `wait_irq` as we're dropping the IRQ now
+`ifndef VERILATOR
             disable wait_dret;
             disable wait_irq;
+`endif
 
             if (detected_irq) begin
               // Drop the IRQ if one was raised
