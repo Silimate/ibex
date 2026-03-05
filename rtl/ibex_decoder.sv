@@ -742,8 +742,8 @@ module ibex_decoder #(
       OPCODE_BRANCH: begin // Branch
         // Check branch condition selection
         unique case (instr_alu[14:12])
-          3'b000:  alu_operator_o = ALU_EQ;
-          3'b001:  alu_operator_o = ALU_NE;
+          3'b000:  alu_operator_o = ALU_NE; 
+          3'b001:  alu_operator_o = ALU_EQ;
           3'b100:  alu_operator_o = ALU_LT;
           3'b101:  alu_operator_o = ALU_GE;
           3'b110:  alu_operator_o = ALU_LTU;
